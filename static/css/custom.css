@@ -1,0 +1,12 @@
+body {
+  background-color: #F9F7F1 !important; /* Off White */
+  color: #50250C !important; /* Cherry */
+}
+.dark body {
+  background-color: #1A1A1A !important; /* Dark mode charcoal */
+  color: #F9F7F1 !important; /* Off White text */
+}
+.btn-primary {
+  background-color: #F2E7D3 !important; /* White Oak */
+  color: #50250C !important;
+}

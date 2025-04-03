@@ -1,0 +1,111 @@
+############# English navigation ##############
+
+# main menu
+[[main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[main]]
+name = "About"
+url = "/about"
+weight = 2
+
+[[main]]
+name = "Elements"
+url = "/elements"
+weight = 3
+
+[[main]]
+weight = 4
+name = "Carpentry"
+
+[[main]]
+weight = 5
+name = "Rentals"
+
+[[main]]
+weight = 6
+name = "Pages"
+
+[[main]]
+parent = "Pages"
+name = "Blog"
+url = "/blog"
+
+[[main]]
+parent = "Pages"
+name = "Contact"
+url = "/contact"
+
+[[main]]
+parent = "Pages"
+name = "Owners"
+url = "/authors"
+
+[[main]]
+parent = "Pages"
+name = "Categories"
+url = "/categories"
+
+[[main]]
+parent = "Carpentry"
+name = "Fine Furniture"
+url = "/furniture"
+
+[[main]]
+parent = "Carpentry"
+name = "Crating Services"
+url = "/crates"
+
+[[main]]
+parent = "Carpentry"
+name = "Built in Furniture"
+url = "/built-in"
+
+[[main]]
+parent = "Carpentry"
+name = "Furniture Repair"
+url = "/repairs"
+
+[[main]]
+parent = "Carpentry"
+name = "Chicken Coops"
+url = "/coops"
+
+[[main]]
+parent = "Carpentry"
+name = "Custom Dowels"
+url = "/dowels"
+
+[[main]]
+parent = "Carpentry"
+name = "Picture Frames"
+url = "/frames"
+
+[[main]]
+parent = "Rentals"
+name = "Wedding Rentals"
+url = "/wedding-rentals"
+
+[[main]]
+parent = "Rentals"
+name = "Party Rentals"
+url = "/party-rentals"
+
+
+# footer menu
+[[footer]]
+name = "About"
+url = "/about"
+weight = 1
+
+[[footer]]
+name = "Elements"
+url = "/elements"
+weight = 2
+
+[[footer]]
+name = "Privacy Policy"
+url = "/privacy-policy"
+weight = 3

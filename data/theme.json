@@ -1,0 +1,44 @@
+{
+  "colors": {
+    "default": {
+      "theme_color": {
+        "primary": "#121212",
+        "body": "#fff",
+        "border": "#eaeaea",
+        "light": "#666B45",
+        "dark": "#040404"
+      },
+      "text_color": {
+        "text": "#444444",
+        "text-dark": "#040404",
+        "text-light": "#717171"
+      }
+    },
+    "darkmode": {
+      "theme_color": {
+        "primary": "#666B45",
+        "body": "#666B45",
+        "border": "#666B45",
+        "light": "#666B45",
+        "dark": "#666B45"
+      },
+      "text_color": {
+        "text": "#fff",
+        "text-dark": "#fff",
+        "text-light": "#fff"
+      }
+    }
+  },
+  "fonts": {
+    "font_family": {
+      "primary": "DM Sans:wght@400;600",
+      "primary_type": "sans-serif",
+      "secondary": "Tiro Devanagari Hindi:wght@500;700",
+      "secondary_type": "sans-serif"
+    },
+    "font_size": {
+      "base": "16.5",
+      "scale": "1.23"
+    }
+  }
+}
