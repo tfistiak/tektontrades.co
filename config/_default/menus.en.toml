@@ -12,8 +12,8 @@ url = "/about"
 weight = 2
 
 [[main]]
-name = "Elements"
-url = "/elements"
+name = "Portfolio"
+url = "/portfolio"
 weight = 3
 
 [[main]]
@@ -25,28 +25,9 @@ weight = 5
 name = "Rentals"
 
 [[main]]
-weight = 6
-name = "Pages"
-
-[[main]]
-parent = "Pages"
-name = "Blog"
-url = "/blog"
-
-[[main]]
-parent = "Pages"
-name = "Contact"
+name = "Contact Us"
 url = "/contact"
-
-[[main]]
-parent = "Pages"
-name = "Owners"
-url = "/authors"
-
-[[main]]
-parent = "Pages"
-name = "Categories"
-url = "/categories"
+weight = 7
 
 [[main]]
 parent = "Carpentry"
@@ -101,8 +82,8 @@ url = "/about"
 weight = 1
 
 [[footer]]
-name = "Elements"
-url = "/elements"
+name = "Portfolio"
+url = "/portfolio"
 weight = 2
 
 [[footer]]

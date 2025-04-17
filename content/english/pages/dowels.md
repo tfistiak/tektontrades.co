@@ -8,9 +8,9 @@ description: "Dowels to match the wood you use in your project"
 draft: false
 ---
 
-# Custom dowels using hardwoods
+# Custom hardwood dowels
 
-Have you ever wished you had a cherry dowel instead of an oak dowel dyed a cherry color? How about walnut? Maple? We make custom dowels! All we need to make the dowel of your choice are the wood species, the length and diameter. 
+Have you ever wished you had a cherry dowel instead of an oak dowel dyed a cherry color? How about walnut? Maple? We make our own custom dowels! All we need to make the dowel of your choice are the wood species, the length and diameter. 
 
 Below are some projects where I needed a dowel that will match the project wood and not stand out as stained. The results were wonderful and completely worth the extra time invested into learning how to use the doweling jig I bought. 
 

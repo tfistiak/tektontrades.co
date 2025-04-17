@@ -1,29 +1,16 @@
 ---
 enable: true
-title: "What Clients are saying about Tekton!"
-description: "Don't just take our word for it - hear from some of our satisfied users!  Check out some of our testimonials below to see what others are saying about Hugoplate."
+title: "What clients are saying about Tekton Trades!"
+description: ""
 
 # Testimonials
 testimonials:
-  - name: "Veronica A."
-    designation: "Lawyers wife!"
-    avatar: "/images/avatar-sm.png"
-    content: "I really love this bookshelf. It is so fantastic. Jake rocks and took care of our house, left it clean and looking better than it did before!"
 
   - name: "Vivian B"
-    designation: "CPA's wife"
+    designation: "Built in Pantry"
     avatar: "/images/avatar-sm.png"
-    content: "This is my son in law, so of course i'm obligated to support him!'."
+    content: "We are extremely pleased with the pantry Tekton built for us. Replacing the corugated shelving in our pantry with maple shelves completely changed our entry hallway. It went from an eyesore with doors that could never close, to a closet that is closeable and visually appealing when we open them to get what we need."
 
-  - name: "Marvin McKinney"
-    designation: "Web Designer"
-    avatar: "/images/avatar-sm.png"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto illo molestias, assumenda expedita commodi inventore non itaque molestiae voluptatum dolore, facilis sapiente, repellat veniam."
-
-  - name: "Marvin McKinney"
-    designation: "Web Designer"
-    avatar: "/images/avatar-sm.png"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto illo molestias, assumenda expedita commodi inventore non itaque molestiae voluptatum dolore, facilis sapiente, repellat veniam."
 
 # don't create a separate page
 _build:

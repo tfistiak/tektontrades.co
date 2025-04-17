@@ -7,7 +7,7 @@ image: "/images/gallery/static/furniture/Shelf Side.png"
 categories: ["Joinery", "Furniture"]
 author: "Jake"
 tags: ["dovetails", "mortise&tenon"]
-draft: false
+draft: true
 ---
 
 What do you want to know about wood working?

@@ -10,5 +10,5 @@ button:
 
 # don't create a separate page
 _build:
-  render: "never"
+  render: "always"
 ---
