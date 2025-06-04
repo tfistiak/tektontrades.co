@@ -23,17 +23,17 @@
         "dark": "#fff"
       },
       "text_color": {
-        "text": "#B4AFB6",
-        "text-dark": "#fff",
-        "text-light": "#B4AFB6"
+        "text": "#F9F7F1",
+        "text-dark": "#F9F7F1",
+        "text-light": "#F9F7F1"
       }
     }
   },
   "fonts": {
     "font_family": {
-      "primary": "DM Sans:wght@400;600",
+      "primary": "Arial:wght@400;600",
       "primary_type": "sans-serif",
-      "secondary": "Tiro Devanagari Hindi:wght@500;700",
+      "secondary": "Times New Roman:wght@500;700",
       "secondary_type": "sans-serif"
     },
     "font_size": {
