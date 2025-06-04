@@ -3,7 +3,7 @@
 banner:
   title: "Tekton Trades Inc."
   content: "**Value in Creation**"
-  image: "/images/landingpage/homeplate.png"
+  image: "/images/landingpage/bill2.jpeg"
   button:
     enable: true
     label: "Get An Estimate"
@@ -17,7 +17,7 @@ features:
     bulletpoints:
       - "Mechanical joints"
       - "Hardwood furniture"
-      - "Custom built"
+      - "Fully custom built"
     button:
       enable: true
       label: "Get Started Now"
@@ -29,7 +29,7 @@ features:
     bulletpoints:
       - "Built to the size you need"
       - "Built to the style you desire"
-      - "Built with your budget in mind"
+      - "Built to look like original work"
     button:
       enable: true
       label: "Explore our work"
@@ -42,7 +42,7 @@ features:
       - "Clear, concise, and prompt communication"
       - "Fair pricing"
       - "Small business fit and feel -- **We take care of you because it's the right thing to do**"
-      - "Built with cutting-edge technology to keep your projects like new for generations"
+      - "Built with inudstry leading technology to keep your projects like new for generations"
     button:
       enable: false
       label: ""
