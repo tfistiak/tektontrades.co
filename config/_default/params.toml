@@ -21,7 +21,7 @@ theme_default = "light" # available options [light/dark/system]
 mainSections = ["blog"]
 # contact form action
 contact_form_action = "https://formsubmit.co/build@tektontrades.co" # contact form works with [https://airform.io/] or [https://formspree.io]
-estimate_form_action = "https://formsubmit.co/ajax/build@tektontrades.co" # contact form works with [https://airform.io/] or [https://formspree.io]
+estimate_form_action = "https://formsubmit.co/ajax/tuhin.themefisher@gmail.com" # contact form works with [https://airform.io/] or [https://formspree.io]
 # google tag manager, see https://developers.google.com/tag-manager/
 google_tag_manager = "" # example: G-XXXXXXXXXX
 google_adsense = ""     # example: ca-pub-xxxxxxxxxxxxxxxx
