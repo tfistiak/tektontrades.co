@@ -16,7 +16,7 @@ input#nav-toggle:checked ~ #nav-menu {
   @apply w-full rounded border-dark/10 bg-light px-6 py-4 text-text-dark placeholder:text-text-light focus:border-dark dark:focus:border-darkmode-primary focus:ring-transparent dark:border-darkmode-border dark:bg-darkmode-light dark:text-darkmode-text-light;
 }
 .form-input-sm{
-  @apply bg-transparent rounded py-1 px-2  focus:ring-transparent max-w-[70px] sm:max-w-[100px] w-auto; 
+  @apply bg-transparent rounded py-1 px-2  focus:ring-transparent max-w-[70px] sm:max-w-[100px] w-auto border-dark/10 bg-light! text-text-dark placeholder:text-text-light focus:border-dark dark:focus:border-darkmode-primary focus:ring-transparent dark:border-darkmode-border dark:bg-darkmode-light! dark:text-darkmode-text-light; 
 }
 /* Remove spinner arrows for all browsers */
 .form-input-sm::-webkit-outer-spin-button,
