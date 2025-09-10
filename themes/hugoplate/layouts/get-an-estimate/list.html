@@ -74,6 +74,7 @@
                             <input
                               class="form-input-sm ml-2"
                               type="number"
+                              placeholder="Qty"
                               name="{{ . }}-number" />
                           </div>
 
@@ -88,6 +89,7 @@
                             <input
                               class="form-input-sm ml-2"
                               type="number"
+                              placeholder="Inc"
                               name="{{ . }}-height" />
                           </div>
                           <div class="flex md:items-end w-[120px] sm:w-[140px] md:w-auto justify-between">
@@ -95,6 +97,7 @@
                             <input
                               class="form-input-sm ml-2"
                               type="number"
+                              placeholder="Inc"
                               name="{{ . }}-width" />
                           </div>
                           <div class="flex md:items-end w-[120px] sm:w-[140px] md:w-auto justify-between">
@@ -102,6 +105,7 @@
                             <input
                               class="form-input-sm ml-2"
                               type="number"
+                              placeholder="Inc"
                               name="{{ . }}-depth" />
                           </div>
                         </div>
@@ -124,7 +128,7 @@
                       id="attachment"
                       name="attachment"
                       accept="image/png, image/jpeg, image/jpg"
-                      class="form-input file:bg-white/30 file:text-white file:px-2"
+                      class="form-input file:bg-dark dark:file:bg-darkmode-dark  file:text-white dark:file:text-black file:px-2 rounded-[2px]"
                       type="file"
                       multiple
                       {{ if .required }}required{{ end }} />
