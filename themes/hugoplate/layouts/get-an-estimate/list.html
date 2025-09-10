@@ -1,0 +1,184 @@
+{{ define "main" }}
+  {{ partial "page-header" . }}
+
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="row">
+        <div class="col-10 mx-auto">
+          {{ with .Params.estimate_form }}
+            <form
+              action="{{ site.Params.estimate_form_action }}"
+              method="post"
+              enctype="multipart/form-data"
+              class="row g-5">
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_subject" value="Get An Estimate" />
+              <div class="md:col-6">
+                {{ with .full_name }}
+                  {{ partial "components/input-box" . }}
+                {{ end }}
+              </div>
+              <div class="md:col-6">
+                {{ with .email }}
+                  {{ partial "components/input-box" . }}
+                {{ end }}
+              </div>
+              <div class="md:col-6">
+                {{ with .most_important_aspect }}
+                  {{ partial "components/select-box" . }}
+                {{ end }}
+              </div>
+              <div class="md:col-6">
+                {{ with .second_most_important_aspect }}
+                  {{ partial "components/select-box" . }}
+                {{ end }}
+              </div>
+              <div class="md:col-6">
+                {{ with .material }}
+                  {{ partial "components/select-box" . }}
+                {{ end }}
+              </div>
+              <div class="md:col-6">
+                {{ with .budget }}
+                  {{ partial "components/input-box" . }}
+                {{ end }}
+              </div>
+              <div class="md:col-6">
+                {{ with .finish }}
+                  {{ partial "components/select-box" . }}
+                {{ end }}
+              </div>
+              <div class="md:col-6">
+                {{ with .timeline }}
+                  {{ partial "components/select-box" . }}
+                {{ end }}
+              </div>
+              <div class="md:col-6">
+                {{ with .delivery_installation }}
+                  {{ partial "components/select-box" . }}
+                {{ end }}
+              </div>
+              <div class="md:col-6">
+                {{ with .file_upload }}
+                  <div>
+                    <label for="attachment" class="form-label">
+                      {{ .label }}
+                      <span class="text-red-500"
+                        >{{ if .required }}*{{ end }}</span
+                      >
+                    </label>
+                    <input
+                      id="attachment"
+                      name="attachment"
+                      accept="image/png, image/jpeg, image/jpg"
+                      class="form-input"
+                      type="file"
+                      multiple
+                      {{ if .required }}required{{ end }} />
+                  </div>
+                {{ end }}
+              </div>
+              <div class="col-12">
+                {{ with .product }}
+                  <label for="{{ .label }}" class="form-label">
+                    {{ .label }}
+                    <span class="text-red-500"
+                      >{{ if .required }}*{{ end }}</span
+                    >
+                  </label>
+
+                  {{ range .list }}
+                    <div class="flex flex-col mb-8">
+                      <div class="flex flex-col md:flex-row gap-y-4">
+                        <div class="flex items-end">
+                          <div class="flex items-end">
+                            <span>No:</span>
+                            <input
+                              class="form-input-sm"
+                              type="number"
+                              name="{{ . }}-number" />
+                          </div>
+                          <div class="flex items-end mx-4">
+                            of
+                            {{ . }}
+                          </div>
+                        </div>
+                        <div class="flex items-end">
+                          <div class="flex items-end">
+                            <span>H:</span>
+                            <input
+                              class="form-input-sm"
+                              type="number"
+                              name="{{ . }}-height" />
+                          </div>
+                          <div class="flex items-end">
+                            <span>W:</span>
+                            <input
+                              class="form-input-sm"
+                              type="number"
+                              name="{{ . }}-width" />
+                          </div>
+                          <div class="flex items-end">
+                            <span>D:</span>
+                            <input
+                              class="form-input-sm"
+                              type="number"
+                              name="{{ . }}-depth" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  {{ end }}
+                {{ end }}
+              </div>
+
+              <div class="col-12">
+                {{ with .additional_comments }}
+                  <label for="{{ .label }}" class="form-label">
+                    {{ .label }}
+                    <span class="text-red-500"
+                      >{{ if .required }}*{{ end }}</span
+                    >
+                  </label>
+                  <textarea
+                    id="{{ .label }}"
+                    name="{{ .label }}"
+                    class="form-input"
+                    placeholder="{{ .placeholder }}"
+                    {{ if .required }}required{{ end }}
+                    rows="8"></textarea>
+                {{ end }}
+
+              </div>
+              <div>
+                <button type="submit" class="btn btn-primary cursor-pointer">
+                  Submit
+                </button>
+              </div>
+            </form>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function validateFileSize(file, maxMB = 5) {
+      if (file && file.size > maxMB * 1024 * 1024) {
+        alert(`File too large! Maximum size is ${maxMB}MB`);
+        return false;
+      }
+      return true;
+    }
+
+    // Usage
+    document
+      .getElementById("attachment")
+      .addEventListener("change", function (e) {
+        if (!validateFileSize(e.target.files[0], 5)) {
+          e.target.value = ""; // Clear input
+        }
+      });
+  </script>
+{{ end }}

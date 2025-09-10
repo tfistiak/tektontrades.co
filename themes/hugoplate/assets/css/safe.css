@@ -15,7 +15,19 @@ input#nav-toggle:checked ~ #nav-menu {
 .form-input {
   @apply w-full rounded border-transparent bg-light px-6 py-4 text-text-dark placeholder:text-text-light focus:border-primary dark:focus:border-darkmode-primary focus:ring-transparent dark:border-darkmode-border dark:bg-darkmode-light dark:text-darkmode-text-light;
 }
+.form-input-sm{
+  @apply bg-transparent border-t-transparent border-l-transparent border-r-transparent border-b border-border focus:ring-transparent max-w-[70px] sm:max-w-[100px] w-auto; 
+}
+/* Remove spinner arrows for all browsers */
+.form-input-sm::-webkit-outer-spin-button,
+.form-input-sm::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
+.form-input-sm {
+    -moz-appearance: textfield;
+}
 .form-label {
   @apply mb-4 block font-secondary text-xl font-normal text-text-dark dark:text-darkmode-text-light;
 }

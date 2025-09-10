@@ -1,0 +1,15 @@
+<div>
+  <label for="{{.label}}" class="form-label">
+    {{ .label }}
+    <span class="text-red-500">{{ if .required }}*{{ end }}</span>
+  </label>
+  <select
+    id="{{.label}}"
+    name="{{.label}}"
+    class="form-input" {{ if .required }} required{{ end }}>
+    {{ range .options }}
+      <option value="{{ . }}">{{ . }}</option>
+    {{ end }}
+  </select>
+</div>
+
