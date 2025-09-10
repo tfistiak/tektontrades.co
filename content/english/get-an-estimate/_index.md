@@ -15,7 +15,7 @@ estimate_form:
     required: true
   most_important_aspect:
     label: "What is the most important aspect of this job?"
-    required: true
+    required: false
     options:
       - "Quality"
       - "Budget"
@@ -30,23 +30,23 @@ estimate_form:
   budget:
     label: "What is your budget for this project?"
     placeholder: "Please provide a rough estimate of your budget"
-    required: true
+    required: false
   material:
     label: "What material is ideal for your project to be built from?"
-    required: true
+    required: false
     options:
       - "Hardwood"
       - "Plywood"
       - "Painted MDF"
   finish:
     label: "Natural hardwood color or stained/painted project?"
-    required: true
+    required: false
     options:
       - "Prefer the real wood with clear finish"
       - "Prefer a stain or painted finish"
   timeline:
     label: "What is your ideal timeline for the project?"
-    required: true
+    required: false
     options:
       - "Less than 1 week"
       - "1 to 2 weeks"
@@ -54,7 +54,7 @@ estimate_form:
       - "4 or more weeks"
   delivery_installation:
     label: "Do you desire to have the project delivered, installed, or both?"
-    required: true
+    required: false
     options:
       - "Delivered"
       - "Installed"

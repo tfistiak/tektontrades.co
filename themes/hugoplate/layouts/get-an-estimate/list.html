@@ -50,31 +50,12 @@
                   {{ partial "components/select-box" . }}
                 {{ end }}
               </div>
-              <div class="md:col-6">
+              <div class="col-12">
                 {{ with .delivery_installation }}
                   {{ partial "components/select-box" . }}
                 {{ end }}
               </div>
-              <div class="md:col-6">
-                {{ with .file_upload }}
-                  <div>
-                    <label for="attachment" class="form-label">
-                      {{ .label }}
-                      <span class="text-red-500"
-                        >{{ if .required }}*{{ end }}</span
-                      >
-                    </label>
-                    <input
-                      id="attachment"
-                      name="attachment"
-                      accept="image/png, image/jpeg, image/jpg"
-                      class="form-input"
-                      type="file"
-                      multiple
-                      {{ if .required }}required{{ end }} />
-                  </div>
-                {{ end }}
-              </div>
+             
               <div class="col-12">
                 {{ with .product }}
                   <label for="{{ .label }}" class="form-label">
@@ -88,37 +69,38 @@
                     <div class="flex flex-col mb-8">
                       <div class="flex flex-col md:flex-row gap-y-4">
                         <div class="flex items-end">
-                          <div class="flex items-end">
+                          <div class="flex md:items-end w-[120px] sm:w-[140px] md:w-auto justify-between">
                             <span>No:</span>
                             <input
-                              class="form-input-sm"
+                              class="form-input-sm ml-2"
                               type="number"
                               name="{{ . }}-number" />
                           </div>
-                          <div class="flex items-end mx-4">
+
+                          <div class="flex items-end mx-4 lg:min-w-24">
                             of
                             {{ . }}
                           </div>
                         </div>
-                        <div class="flex items-end">
-                          <div class="flex items-end">
+                        <div class="flex md:items-end gap-x-6 flex-col md:flex-row gap-y-4">
+                          <div class="flex md:items-end w-[120px] sm:w-[140px] md:w-auto justify-between w-[120px] sm:w-[140px] md:w-auto justify-between">
                             <span>H:</span>
                             <input
-                              class="form-input-sm"
+                              class="form-input-sm ml-2"
                               type="number"
                               name="{{ . }}-height" />
                           </div>
-                          <div class="flex items-end">
+                          <div class="flex md:items-end w-[120px] sm:w-[140px] md:w-auto justify-between">
                             <span>W:</span>
                             <input
-                              class="form-input-sm"
+                              class="form-input-sm ml-2"
                               type="number"
                               name="{{ . }}-width" />
                           </div>
-                          <div class="flex items-end">
+                          <div class="flex md:items-end w-[120px] sm:w-[140px] md:w-auto justify-between">
                             <span>D:</span>
                             <input
-                              class="form-input-sm"
+                              class="form-input-sm ml-2"
                               type="number"
                               name="{{ . }}-depth" />
                           </div>
@@ -126,6 +108,27 @@
                       </div>
                     </div>
                   {{ end }}
+                {{ end }}
+              </div>
+
+               <div class="col-12">
+                {{ with .file_upload }}
+                  <div>
+                    <label for="attachment" class="form-label">
+                      {{ .label }}
+                      <span class="text-red-500"
+                        >{{ if .required }}*{{ end }}</span
+                      >
+                    </label>
+                    <input
+                      id="attachment"
+                      name="attachment"
+                      accept="image/png, image/jpeg, image/jpg"
+                      class="form-input file:bg-white/30 file:text-white file:px-2"
+                      type="file"
+                      multiple
+                      {{ if .required }}required{{ end }} />
+                  </div>
                 {{ end }}
               </div>
 
@@ -269,13 +272,14 @@
             };
 
 
-            formSubmission(formObject, this, "{{ site.Params.contact_form_action | safeJS }}");
+            formSubmission(formObject, this, "{{ site.Params.estimate_form_action | safeJS }}");
 
 
         });
     }
 
     function formSubmission(formObject, form, url) {
+        console.log(formObject)
         let submitBtn = document.getElementById("submit-btn");
         let formStatus = document.getElementById("form-status");
 
@@ -327,7 +331,7 @@
             // Don't set Content-Type header for FormData, let browser set it with boundary
         } else {
             // Use JSON for forms without files
-            requestOptions.headers = { "Content-type": "application/json" };
+            requestOptions.headers = { "Content-type": "application/json", "Accept": "application/json" };
             requestOptions.body = JSON.stringify({
                 ...formObject,
                 _subject: formObject.form_type,
@@ -337,6 +341,7 @@
         fetch(url, requestOptions)
             .then((response) => {
                 if (response.ok) {
+                    console.log(response)
                     formStatus.textContent = "✅ Thank you! Your message has been sent.";
                     formStatus.style.color = "green";
                     form.reset();
