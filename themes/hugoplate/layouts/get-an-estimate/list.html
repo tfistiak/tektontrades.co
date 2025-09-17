@@ -1,0 +1,453 @@
+{{ define "main" }}
+  {{ partial "page-header" . }}
+
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="row">
+        <div class="col-10 mx-auto">
+          {{ with .Params.estimate_form }}
+            <form class="row g-5" id="estimate-form">
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_subject" value="Get An Estimate" />
+              <div class="md:col-6">
+                {{ with .full_name }}
+                  {{ partial "components/input-box" . }}
+                {{ end }}
+              </div>
+              <div class="md:col-6">
+                {{ with .email }}
+                  {{ partial "components/input-box" . }}
+                {{ end }}
+              </div>
+              <div class="md:col-6">
+                {{ with .most_important_aspect }}
+                  {{ partial "components/select-box" . }}
+                {{ end }}
+              </div>
+              <div class="md:col-6">
+                {{ with .second_most_important_aspect }}
+                  {{ partial "components/select-box" . }}
+                {{ end }}
+              </div>
+              <div class="md:col-6">
+                {{ with .material }}
+                  {{ partial "components/select-box" . }}
+                {{ end }}
+              </div>
+              <div class="md:col-6">
+                {{ with .budget }}
+                  {{ partial "components/input-box" . }}
+                {{ end }}
+              </div>
+              <div class="md:col-6">
+                {{ with .finish }}
+                  {{ partial "components/select-box" . }}
+                {{ end }}
+              </div>
+              <div class="md:col-6">
+                {{ with .timeline }}
+                  {{ partial "components/select-box" . }}
+                {{ end }}
+              </div>
+              <div class="col-12">
+                {{ with .delivery_installation }}
+                  {{ partial "components/select-box" . }}
+                {{ end }}
+              </div>
+
+              <div class="col-12">
+                {{ with .product }}
+                  <label for="{{ .label }}" class="form-label">
+                    {{ .label }}
+                    <span class="text-red-500"
+                      >{{ if .required }}*{{ end }}</span
+                    >
+                  </label>
+
+                  {{ range .list }}
+                    <div class="flex flex-col mb-8">
+                      <div class="flex flex-col md:flex-row gap-y-4">
+                        <div class="flex items-end">
+                          <div
+                            class="flex md:items-end w-[120px] sm:w-[140px] md:w-auto justify-between">
+                            <span>No:</span>
+                            <input
+                              class="form-input-sm ml-2"
+                              type="number"
+                              placeholder="Qty"
+                              name="{{ . }}-number" />
+                          </div>
+
+                          <div class="flex items-end mx-4 lg:min-w-24">
+                            of
+                            {{ . }}
+                          </div>
+                        </div>
+                        <div
+                          class="flex md:items-end gap-x-6 flex-col md:flex-row gap-y-4">
+                          <div
+                            class="flex md:items-end w-[120px] sm:w-[140px] md:w-auto justify-between w-[120px] sm:w-[140px] md:w-auto justify-between">
+                            <span>H:</span>
+                            <input
+                              class="form-input-sm ml-2"
+                              type="number"
+                              placeholder="inches"
+                              name="{{ . }}-height" />
+                          </div>
+                          <div
+                            class="flex md:items-end w-[120px] sm:w-[140px] md:w-auto justify-between">
+                            <span>W:</span>
+                            <input
+                              class="form-input-sm ml-2"
+                              type="number"
+                              placeholder="inches"
+                              name="{{ . }}-width" />
+                          </div>
+                          <div
+                            class="flex md:items-end w-[120px] sm:w-[140px] md:w-auto justify-between">
+                            <span>D:</span>
+                            <input
+                              class="form-input-sm ml-2"
+                              type="number"
+                              placeholder="inches"
+                              name="{{ . }}-depth" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  {{ end }}
+                {{ end }}
+              </div>
+
+              <div class="col-12">
+                {{ with .file_upload }}
+                  <div>
+                    <label for="attachment" class="form-label">
+                      {{ .label }}
+                      <span class="text-red-500"
+                        >{{ if .required }}*{{ end }}</span
+                      >
+                    </label>
+                    <input
+                      id="attachment"
+                      name="attachment"
+                      accept="image/png, image/jpeg, image/jpg"
+                      class="form-input file:bg-dark dark:file:bg-darkmode-dark  file:text-white dark:file:text-black file:px-2 rounded-[2px]"
+                      type="file"
+                      {{ if .required }}required{{ end }} />
+                  </div>
+                {{ end }}
+              </div>
+
+              <div class="col-12">
+                {{ with .additional_comments }}
+                  <label for="Additional Comments" class="form-label">
+                    {{ .label }}
+                    <span class="text-red-500"
+                      >{{ if .required }}*{{ end }}</span
+                    >
+                  </label>
+                  <textarea
+                    id="Additional Comments"
+                    name="Additional Comments"
+                    class="form-input"
+                    placeholder="{{ .placeholder }}"
+                    {{ if .required }}required{{ end }}
+                    rows="8"></textarea>
+                {{ end }}
+
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  class="btn btn-primary cursor-pointer"
+                  id="submit-btn">
+                  Submit
+                </button>
+                <div id="form-status" class="mt-4 text-center"></div>
+              </div>
+            </form>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+    function validateFileSize(file, maxMB = 5) {
+        if (file && file.size > maxMB * 1024 * 1024) {
+            alert(`File too large! Maximum size is ${maxMB}MB`);
+            return false;
+        }
+        return true;
+    }
+
+    // Usage
+    document
+        .getElementById("attachment")
+        .addEventListener("change", function (e) {
+            if (!validateFileSize(e.target.files[0], 5)) {
+                e.target.value = ""; // Clear input
+            }
+        });
+
+
+
+    // Estimate form submission
+    const estimateForm = document.getElementById("estimate-form");
+    if (estimateForm) {
+        estimateForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Helper function to convert string to snake_case
+            const toSnakeCase = (str) => {
+                return str
+                    .replace(/[^a-zA-Z0-9\s]/g, '') // Remove special characters except spaces
+                    .trim()
+                    .replace(/\s+/g, '_') // Replace spaces with underscores
+                    .toLowerCase();
+            };
+
+            // Dynamically collect all form data
+            let formObject = {};
+
+            // Get all form elements (inputs, selects, textareas)
+            const formElements = this.querySelectorAll('input, select, textarea');
+
+            // Separate regular fields from product dimension fields
+            const regularFields = {};
+            const productFields = {};
+            const fileFields = [];
+
+            formElements.forEach(element => {
+                const name = element.name || element.id;
+                const value = element.value ? element.value.trim() : '';
+
+                // Skip hidden fields and empty names (but not file inputs)
+                if (!name || element.type === 'hidden') {
+                    return;
+                }
+
+                // Handle file inputs separately (they don't have text values)
+                if (element.type === 'file') {
+                    if (element.files && element.files.length > 0) {
+                        // Store single file metadata for the form object
+                        const file = element.files[0]; // Get only the first file since multiple is disabled
+                        fileFields.push({
+                            name: file.name,
+                            size: file.size,
+                            type: file.type,
+                            fieldName: name
+                        });
+                    }
+                    return;
+                }
+
+                // Skip non-file inputs with empty values
+                if (!value) {
+                    return;
+                }
+
+                // Check if this is a product dimension field
+                const productMatch = name.match(/^(.+)-(number|height|width|depth)$/);
+                if (productMatch) {
+                    const [, productType, dimension] = productMatch;
+                    if (!productFields[productType]) {
+                        productFields[productType] = {};
+                    }
+                    productFields[productType][dimension] = value;
+                } else {
+                    // Convert field name to snake_case for consistent object keys
+                    const snakeCaseName = toSnakeCase(name);
+                    regularFields[snakeCaseName] = value;
+                }
+            });
+
+            // Build the dynamic form object
+            formObject = {
+                form_type: "Get An Estimate",
+                ...regularFields,
+
+                // Add product dimensions if any exist
+                ...(Object.keys(productFields).length > 0 && {
+                    products: Object.fromEntries(
+                        Object.entries(productFields).filter(([, dims]) =>
+                            Object.values(dims).some(val => val)
+                        )
+                    )
+                }),
+
+                // Add file attachments if any exist
+                ...(fileFields.length > 0 && { attachments: fileFields }),
+
+                // Form metadata
+
+                submitted_at: new Date().toISOString()
+            };
+
+
+            formSubmission(formObject, this, "{{ site.Params.estimate_form_action | safeJS }}");
+
+
+        });
+    }
+
+    function formSubmission(formObject, form, url) {
+
+        let submitBtn = document.getElementById("submit-btn");
+        let formStatus = document.getElementById("form-status");
+
+        // Disable button and show "Submitting..."
+        submitBtn.disabled = true;
+        submitBtn.classList.add("cursor-wait");
+        submitBtn.textContent = "Submitting..."; //"Submitting...";
+
+        // Check if there are file attachments directly from the file input
+        const fileInput = document.getElementById('attachment');
+        const hasFiles = fileInput && fileInput.files && fileInput.files.length > 0;
+
+        let requestOptions = {
+            method: "POST"
+        };
+
+        if (hasFiles) {
+            // Use FormData for file uploads
+            const formData = new FormData();
+
+            // Add all regular form fields (excluding attachments metadata)
+            Object.entries(formObject).forEach(([key, value]) => {
+                if (key === 'attachments') {
+                    // Skip attachments metadata - we'll handle actual files separately
+                    return;
+                }
+                if (key === 'products' && typeof value === 'object' && value !== null) {
+                    // Format products in a readable way for email
+                    let formattedProducts = 'PRODUCT SPECIFICATIONS:\n\n';
+                    Object.entries(value).forEach(([productType, dimensions]) => {
+                        formattedProducts += `${productType}:\n`;
+                        if (dimensions.number) formattedProducts += `  • Quantity: ${dimensions.number}\n`;
+                        if (dimensions.height) formattedProducts += `  • Height: ${dimensions.height} inches\n`;
+                        if (dimensions.width) formattedProducts += `  • Width: ${dimensions.width} inches\n`;
+                        if (dimensions.depth) formattedProducts += `  • Depth: ${dimensions.depth} inches\n`;
+                        formattedProducts += '\n';
+                    });
+                    formData.append('products', formattedProducts);
+                } else if (typeof value === 'object' && value !== null) {
+                    formData.append(key, JSON.stringify(value));
+                } else {
+                    formData.append(key, String(value || ''));
+                }
+            });
+
+            // Add FormSubmit.co configuration optimized for attachments
+            formData.append('_subject', formObject.form_type);
+            formData.append('_captcha', 'false');
+            formData.append('_template', 'table'); // Table template handles attachments better
+            formData.append('_autoresponse', 'Thank you for your estimate request. We will review your information and get back to you soon!');
+            
+
+            // Add single file attachment from file input (we already checked hasFiles above)
+            const file = fileInput.files[0]; // Get the single file
+
+            // Check file size limit (FormSubmit.co has 10MB limit)
+            const maxSize = 10 * 1024 * 1024; // 10MB
+            if (file.size > maxSize) {
+                alert('File too large! FormSubmit.co supports files up to 10MB.');
+                return;
+            }
+            
+            // Use the exact field name that matches the HTML input
+            formData.append('attachment', file, file.name);
+            
+
+            requestOptions.body = formData;
+            
+            // Don't set Content-Type header for FormData, let browser set it with boundary
+            
+            // Submit form using standard FormSubmit for file uploads
+            fetch(url, requestOptions)
+                .then((response) => {
+                    if (response.ok || response.redirected) {
+                        formStatus.textContent = "✅ Thank you! Your message with attachment has been sent.";
+                        formStatus.style.color = "green";
+                        form.reset();
+                        setTimeout(() => {
+                            formStatus.textContent = "";
+                        }, 5000);
+                    } else {
+                        formStatus.textContent = "❌ Error sending message. Please try again.";
+                        formStatus.style.color = "red";
+                        setTimeout(() => {
+                            formStatus.textContent = "";
+                        }, 5000);
+                    }
+                })
+                .catch((error) => {
+                    // Even on "error", FormSubmit might have worked (due to redirect)
+                    formStatus.textContent = "✅ Thank you! Your message has been sent.";
+                    formStatus.style.color = "green";
+                    form.reset();
+                })
+                .finally(() => {
+                    // Re-enable button and reset text
+                    submitBtn.classList.remove("cursor-wait");
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Submit";
+                });
+        } else {
+            // Use JSON for forms without files
+            requestOptions.headers = { "Content-type": "application/json", "Accept": "application/json" };
+            
+            // Format products for JSON submission too
+            let formattedFormObject = { ...formObject };
+            if (formObject.products && typeof formObject.products === 'object') {
+                let formattedProducts = 'PRODUCT SPECIFICATIONS:\n\n';
+                Object.entries(formObject.products).forEach(([productType, dimensions]) => {
+                    formattedProducts += `${productType}:\n`;
+                    if (dimensions.number) formattedProducts += `  • Quantity: ${dimensions.number}\n`;
+                    if (dimensions.height) formattedProducts += `  • Height: ${dimensions.height} inches\n`;
+                    if (dimensions.width) formattedProducts += `  • Width: ${dimensions.width} inches\n`;
+                    if (dimensions.depth) formattedProducts += `  • Depth: ${dimensions.depth} inches\n`;
+                    formattedProducts += '\n';
+                });
+                formattedFormObject.products = formattedProducts;
+            }
+            
+            requestOptions.body = JSON.stringify({
+                ...formattedFormObject,
+                _subject: formObject.form_type,
+            });
+            
+            // For forms without files, use AJAX endpoint
+            fetch(url.replace('/istiak.themefisher@gmail.com', '/ajax/istiak.themefisher@gmail.com'), requestOptions)
+                .then((response) => {
+                    if (response.ok) {
+                        formStatus.textContent = "✅ Thank you! Your message has been sent.";
+                        formStatus.style.color = "green";
+                        form.reset();
+                        setTimeout(() => {
+                            formStatus.textContent = "";
+                        }, 5000);
+                    } else {
+                        formStatus.textContent = "❌ Error sending message. Please try again.";
+                        formStatus.style.color = "red";
+                        setTimeout(() => {
+                            formStatus.textContent = "";
+                        }, 5000);
+                    }
+                })
+                .catch((error) => {
+                    formStatus.textContent = "✅ Thank you! Your message has been sent.";
+                    formStatus.style.color = "green";
+                })
+                .finally(() => {
+                    // Re-enable button and reset text
+                    submitBtn.classList.remove("cursor-wait");
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Submit";
+                });
+        }
+    }
+</script>
+{{ end }}

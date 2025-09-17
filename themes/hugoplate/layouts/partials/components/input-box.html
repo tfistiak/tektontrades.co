@@ -1,0 +1,12 @@
+<div>
+  <label for="{{.label}}" class="form-label">
+    {{ .label }}
+    <span class="text-red-500">{{ if .required }}*{{ end }}</span>
+  </label>
+  <input
+    id="{{.label}}"
+    name="{{.label}}"
+    class="form-input"
+    placeholder="{{ .placeholder }}"
+    type="text" {{ if .required }} required{{ end }} />
+</div>

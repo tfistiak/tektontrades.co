@@ -7,7 +7,7 @@ banner:
   button:
     enable: true
     label: "Get An Estimate"
-    link: "/contact/"
+    link: "/get-an-estimate/"
 
 # Features
 features:
