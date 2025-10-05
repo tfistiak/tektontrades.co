@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-10 mx-auto">
           {{ with .Params.estimate_form }}
-            <form class="row g-5" id="estimate-form">
+            <form class="row g-5" action="{{ site.Params.estimate_form_action }}" method="POST" enctype="multipart/form-data">
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_subject" value="Get An Estimate" />
               <div class="md:col-6">
